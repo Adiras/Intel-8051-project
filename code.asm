@@ -2,14 +2,14 @@
 CSKB0 xDATA 21h				; klawiatura matrycowa: klawisze 0...7
 CSKB1 xDATA 22h				; klawiatura matrycowa: klawisze 8...
 
-LCDWC xDATA 0FF80h			; HD44780 - wpis rozkazÛw
+LCDWC xDATA 0FF80h			; HD44780 - wpis rozkaz√≥w
 LCDWD xDATA 0FF81h			; HD44780 - wpis danyc
 LCDRC xDATA 0FF82h			; HD44780 - odczyt stanu
 LCDRD xDATA 0FF83h			; HD44780 - odczyt danyh
 
 STRING DATA 042h			; offset napisu do wyswietlenia przez LCD
 
-STL DATA 055h 				; informacje o stanie programu m≥odszy bajt
+STL DATA 055h 				; informacje o stanie programu m≈Çodszy bajt
 STH DATA 056h 				; informacje o stanie programu starszy bajt
 
 T0_VAL_INIT EQU 65535 - 9215
@@ -34,7 +34,7 @@ CHAR2 DATA 075h
 CHARP DATA 076h
 
 ;---------------------------------------------------------------------------
-;			           S T A R T    P R O G R A M U
+;                       S T A R T    P R O G R A M U
 ;---------------------------------------------------------------------------
 	ORG 	0000h
 _RESET:
@@ -46,7 +46,7 @@ _OVRFL:
 	RETI
 	ORG 	0100h
 ;---------------------------------------------------------------------------
-;			            I N I C J A L I Z A C J A 
+;                        I N I C J A L I Z A C J A 
 ;---------------------------------------------------------------------------
 _INIT:
 	CLR		C
@@ -80,7 +80,7 @@ _INIT:
 	CLR 	TF0									; flaga przepelnienia - wyczysc	
 	SETB 	TR0
 
-	CALL 	_LCD_INIT 							; inicjalizacja wyswietlacza LCD
+	CALL 	_LCD_INIT
 	
 	CALL 	_GOTO_SETTINGS_EDIT_MSG_ENABLE
 ;---------------------------------------------------------------------------
@@ -180,7 +180,7 @@ _LOOP:
 	;--------------------------------;
 
 _LOOP_TIMER:
-	MOV 	A, #99d								; obs≥uga licznika programowego timera
+	MOV 	A, #99d								; obs≈Çuga licznika programowego timera
 	CLR 	C
 	SUBB 	A, TIMER_COUNTER
 	JNC 	_LOOP
@@ -699,7 +699,7 @@ _TEST_BUZZER:
 	LJMP 	_TEST_BUZZER_ENTER_NOT_RESSED
 
 	_TEST_BUZZER_ENTER_PRESSED:
-		CPL 	P1.5							; zanegowanie brzÍczyk BUZZER
+		CPL 	P1.5
 		LJMP	_TEST_BUZZER_ENTER_END
 	_TEST_BUZZER_ENTER_NOT_RESSED:
 		LJMP	_TEST_BUZZER_ENTER_END
@@ -756,7 +756,7 @@ _TEST_LED:
 	LJMP 	_TEST_LED_ENTER_NOT_RESSED
 
 	_TEST_LED_ENTER_PRESSED:
-		CPL 	P1.7							; zanegowanie dioda úwiecπca TEST
+		CPL 	P1.7
 		LJMP	_TEST_LED_ENTER_END
 	_TEST_LED_ENTER_NOT_RESSED:
 		LJMP	_TEST_LED_ENTER_END
